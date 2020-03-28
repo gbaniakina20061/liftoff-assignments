@@ -1,0 +1,40 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+import functools 
+import operator 
+
+# Complete the beautifulTriplets function below.
+def beautifulTriplets(d, arr):
+    f=[0]*(2*10000+1)
+    for i  in  arr:
+        f[i]=f[i]+1
+   
+    z = zip(f, f[d:], f[d+d:])
+    mapped = map(lambda t : functools.reduce(operator.mul, t, 1), z);
+    return sum(mapped)
+        
+
+    
+
+
+if __name__ == '__main__':
+  fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+  nd = input().split()
+
+  n = int(nd[0])
+
+  d = int(nd[1])
+
+  arr = list(map(int, input().rstrip().split()))
+
+  result = beautifulTriplets(d, arr)
+
+  fptr.write(str(result) + '\n')
+
+  fptr.close()
